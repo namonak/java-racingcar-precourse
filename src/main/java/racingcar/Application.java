@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
 public class Application {
@@ -45,7 +46,71 @@ public class Application {
         }
     }
 
-    static class RacingCarGameView {}
+    static class RacingCarGameView {
+        private static final String RUN_MARK = "-";
+
+        void printWinner(String winners) {
+            System.out.println("최종 우승자: " + winners);
+        }
+
+        private String makePosition(int runCount) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < runCount; i++) {
+                sb.append(RUN_MARK);
+            }
+            return sb.toString();
+        }
+
+        private void printPosition(HashMap<String, Integer> racers) {
+            for (Entry<String, Integer> entry : racers.entrySet()) {
+                System.out.println(entry.getKey() + " : " + makePosition(entry.getValue()));
+            }
+            System.out.println();
+        }
+
+        boolean validateCarName(String input) {
+            String[] carNames = Utils.isContainComma(input);
+
+            Utils.checkCarNameLength(carNames);
+            Utils.checkDuplicateCarName(carNames);
+
+            return true;
+        }
+
+        private int askTryCount() {
+            System.out.println("시도할 회수");
+
+            boolean result = false;
+            String strNum = "";
+
+            do {
+                try {
+                    result = Utils.isNumber(strNum = readLine());
+                } catch (NumberFormatException e) {
+                    System.out.println(e.getMessage());
+                }
+            } while (!result);
+
+            return Integer.parseInt(strNum);
+        }
+
+        private String[] askCarName() {
+            System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,)로 구분하세요.)");
+
+            boolean result = false;
+            String input = "";
+
+            do {
+                try {
+                    result = validateCarName(input = readLine());
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            } while (!result);
+
+            return input.split(",");
+        }
+    }
 
     static class RacingCarGameController {}
 
