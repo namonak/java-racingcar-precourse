@@ -121,15 +121,71 @@ class ApplicationTest extends NsTest {
         }
     }
 
+    static class isContainCommaTestCase {
+        public String description;
+        public String given;
+        public String[] want;
+    }
+
     @Test
     void 자동차이름_콤마포함여부확인_테스트() {
+        isContainCommaTestCase[] tests = new isContainCommaTestCase[]{
+                new isContainCommaTestCase() {
+                    {
+                        description = "pobi,woni";
+                        given = "pobi,woni";
+                        want = new String[]{"pobi", "woni"};
+                    }
+                },
+                new isContainCommaTestCase() {
+                    {
+                        description = "hannah,christina,joannes";
+                        given = "hannah,christina,joannes";
+                        want = new String[]{"hannah", "christina", "joannes"};
+                    }
+                },
+        };
+
+        for (isContainCommaTestCase test : tests) {
+            for (int i = 0; i < test.want.length; i++) {
+                assertEquals(test.want[i], Application.Utils.isContainComma(test.given)[i], test.description);
+            }
+        }
+
         for (String testCase : Arrays.asList("pobi woni", "pobiwoni woni")) {
             assertThatIllegalArgumentException().isThrownBy(() -> Application.Utils.isContainComma(testCase));
         }
     }
 
+    static class isNumberTestCase {
+        public String description;
+        public String given;
+        public boolean want;
+    }
+
     @Test
     void 정수파싱_테스트() {
+        isNumberTestCase[] tests = new isNumberTestCase[]{
+                new isNumberTestCase() {
+                    {
+                        description = "양수 파싱 테스트";
+                        given = "12345";
+                        want = true;
+                    }
+                },
+                new isNumberTestCase() {
+                    {
+                        description = "음수 파싱 테스트";
+                        given = "-12345";
+                        want = true;
+                    }
+                },
+        };
+
+        for (isNumberTestCase test : tests) {
+            assertEquals(test.want, Application.Utils.isNumber(test.given), test.description);
+        }
+
         for (String testCase : Arrays.asList("number", "hannah", "christina", "joannes")) {
             assertThatIllegalArgumentException().isThrownBy(() -> Application.Utils.isNumber(testCase));
         }
