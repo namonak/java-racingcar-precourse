@@ -50,7 +50,19 @@ public class Application {
 
     static class RacingCarGameController {}
 
-    static class Utils {}
+    static class Utils {
+        static void checkDuplicateCarName(String[] carName) {}
+
+        static void checkCarNameLength(String[] carNames) {}
+
+        static String[] isContainComma(String carNames) {
+            return null;
+        }
+
+        static boolean isNumber(String input) {
+            return false;
+        }
+    }
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현

@@ -3,11 +3,13 @@ package racingcar;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApplicationTest extends NsTest {
@@ -90,6 +92,46 @@ class ApplicationTest extends NsTest {
             String winner = racingCarGameModel.generateWinner(test.car);
 
             assertEquals(winner, test.winner, test.description);
+        }
+    }
+
+    @Test
+    void 자동차이름_중복체크_테스트() {
+        for (String[] testCase : new String[][]{
+                {"pobi", "pobi"},
+                {"pobi", "pobi", "woni"},
+                {"pobi", "crong", "honux", "pobi"},
+                {"jun", "jun"},
+        }
+        ) {
+            assertThatIllegalArgumentException().isThrownBy(() -> Application.Utils.checkDuplicateCarName(testCase));
+        }
+    }
+
+    @Test
+    void 자동차이름_길이검증_테스트() {
+        for (String[] testCase : new String[][]{
+                {"hannah", "pobi"},
+                {"pobi", "pororo", "woni"},
+                {"pobi", "crong", "honux", "christina"},
+                {"joannes", "jun"},
+        }
+        ) {
+            assertThatIllegalArgumentException().isThrownBy(() -> Application.Utils.checkCarNameLength(testCase));
+        }
+    }
+
+    @Test
+    void 자동차이름_콤마포함여부확인_테스트() {
+        for (String testCase : Arrays.asList("pobi woni", "pobiwoni woni")) {
+            assertThatIllegalArgumentException().isThrownBy(() -> Application.Utils.isContainComma(testCase));
+        }
+    }
+
+    @Test
+    void 정수파싱_테스트() {
+        for (String testCase : Arrays.asList("number", "hannah", "christina", "joannes")) {
+            assertThatIllegalArgumentException().isThrownBy(() -> Application.Utils.isNumber(testCase));
         }
     }
 
