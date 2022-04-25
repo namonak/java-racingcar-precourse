@@ -40,4 +40,4 @@
 | private static void checkDuplicateCarName(String[] carName) | 전달받은 문자열 배열에서 중복 값이 없는지 확인하는 메서드, 중복 값이 있는 경우 IllegalArgumentException 발생 후 에러 메시지 출력          |
 | private static void checkCarNameLength(String[] carNames)   | 전달받은 문자열 배열의 값들이 1~5 범위의 값을 가지는지 확인하는 메서드, 범위를 벗어나는 경우 IllegalArgumentException 발생 후 에러 메시지 출력 |
 | private static String[] isContainComma(String carNames)     | 전달받은 문자열에 콤마(",")가 포함되었는지 확인하는 메서드, 콤마(",")가 없는 경우 IllegalArgumentException 발생 후 에러 메시지 출력     |
-| private static boolean isNumber(String input)               | 전달받은 문자열이 정수 형태로 변환 가능한지 확인하는 메서드, 정수로 변환되지 않는 경우 NumberFormatException 발생 후 에러 메시지 출력         |
+| private static boolean isNumber(String input)               | 전달받은 문자열이 정수 형태로 파싱 가능한지 확인하는 메서드, 정수로 변환되지 않는 경우 NumberFormatException 발생 후 에러 메시지 출력         |
