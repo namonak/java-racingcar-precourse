@@ -1,8 +1,11 @@
 package racingcar;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Map.Entry;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
@@ -51,16 +54,36 @@ public class Application {
     static class RacingCarGameController {}
 
     static class Utils {
-        static void checkDuplicateCarName(String[] carName) {}
+        static void checkDuplicateCarName(String[] carName) {
+            Set<String> carNameSet = new HashSet<>(Arrays.asList(carName));
 
-        static void checkCarNameLength(String[] carNames) {}
+            if (carNameSet.size() != carName.length) {
+                throw new IllegalArgumentException("[ERROR] 입력된 자동차 이름에 중복이 있습니다.");
+            }
+        }
+
+        static void checkCarNameLength(String[] carNames) {
+            for (String carName : carNames) {
+                if (carName.length() == 0 || carName.length() > 5) {
+                    throw new IllegalArgumentException("[ERROR] 자동차 이름은 5글자 이하입니다.");
+                }
+            }
+        }
 
         static String[] isContainComma(String carNames) {
-            return null;
+            if (!carNames.contains(",")) {
+                throw new IllegalArgumentException("[ERROR] 사용자 구분을 위한 (,) 입력이 생략되었습니다.");
+            }
+            return carNames.split(",");
         }
 
         static boolean isNumber(String input) {
-            return false;
+            try {
+                Integer.parseInt(input);
+                return true;
+            } catch (NumberFormatException e) {
+                throw new NumberFormatException("[ERROR] 입력된 값은 숫자가 아닙니다.");
+            }
         }
     }
 
