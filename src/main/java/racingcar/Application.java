@@ -112,7 +112,24 @@ public class Application {
         }
     }
 
-    static class RacingCarGameController {}
+    static class RacingCarGameController {
+        private final RacingCarGameView racingCarGameView = new RacingCarGameView();
+        private final RacingCarGameModel racingCarGameModel = new RacingCarGameModel();
+
+        private void start() {
+            String[] carNames = racingCarGameView.askCarName();
+            int tryCount = racingCarGameView.askTryCount();
+            HashMap<String, Integer> result = null;
+
+            racingCarGameModel.setCarUsers(carNames);
+
+            for (int i = 0; i < tryCount; i++) {
+                racingCarGameView.printPosition(result = racingCarGameModel.run());
+            }
+
+            racingCarGameView.printWinner(racingCarGameModel.generateWinner(result));
+        }
+    }
 
     static class Utils {
         private static final int MIN_NUM = 0;
@@ -153,6 +170,7 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        RacingCarGameController racingCarGameController = new RacingCarGameController();
+        racingCarGameController.start();
     }
 }
