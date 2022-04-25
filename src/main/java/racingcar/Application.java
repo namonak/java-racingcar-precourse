@@ -18,11 +18,13 @@ public class Application {
         String generateWinner(HashMap<String, Integer> racers) {
             int maxValue = 0;
             List<String> winners = new ArrayList<>();
+
             for (Entry<String, Integer> entry : racers.entrySet()) {
+                if (entry.getValue() >= maxValue && entry.getValue() != maxValue) {
+                    winners.clear();
+                }
+
                 if (entry.getValue() >= maxValue) {
-                    if (entry.getValue() != maxValue) {
-                        winners.clear();
-                    }
                     maxValue = entry.getValue();
                     winners.add(entry.getKey());
                 }
