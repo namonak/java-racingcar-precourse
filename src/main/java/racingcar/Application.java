@@ -12,10 +12,6 @@ import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
 public class Application {
     static class RacingCarGameModel {
-        private static final int MIN_NUM = 0;
-        private static final int MAX_NUM = 9;
-        private static final int PIVOT_VALUE = 3;
-
         HashMap<String, Integer> racers = new HashMap<>();
 
         String generateWinner(HashMap<String, Integer> racers) {
@@ -41,7 +37,7 @@ public class Application {
 
         HashMap<String, Integer> run() {
             for (Entry<String, Integer> entry : racers.entrySet()) {
-                if (pickNumberInRange(MIN_NUM, MAX_NUM) > PIVOT_VALUE) {
+                if (pickNumberInRange(Utils.MIN_NUM, Utils.MAX_NUM) > Utils.PIVOT_VALUE) {
                     racers.put(entry.getKey(), entry.getValue() + 1);
                 }
             }
@@ -54,6 +50,10 @@ public class Application {
     static class RacingCarGameController {}
 
     static class Utils {
+        private static final int MIN_NUM = 0;
+        private static final int MAX_NUM = 9;
+        private static final int PIVOT_VALUE = 3;
+
         static void checkDuplicateCarName(String[] carName) {
             Set<String> carNameSet = new HashSet<>(Arrays.asList(carName));
 
