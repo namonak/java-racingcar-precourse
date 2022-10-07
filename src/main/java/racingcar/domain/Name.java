@@ -1,18 +1,27 @@
 package racingcar.domain;
 
+import racingcar.util.Utils;
+
 import java.util.Objects;
 
 public class Name {
     private final String name;
 
     public Name(String name) {
+        validateName(name);
+        this.name = name;
+    }
+
+    private static void validateName(String name) {
         if (name.isEmpty() || name.contains(" ")) {
-            throw new IllegalArgumentException("이름이 빈 문자열이거나 공백이 있습니다.");
+            throw new IllegalArgumentException("이름에 빈 문자열이거나 공백이 있습니다.");
         }
         if (name.length() > 5) {
             throw new IllegalArgumentException("이름은 5글자 이하만 가능합니다.");
         }
-        this.name = name;
+        if (!Utils.isAlphabet(name)) {
+            throw new IllegalArgumentException("이름은 알파벳만 가능합니다.");
+        }
     }
 
     @Override

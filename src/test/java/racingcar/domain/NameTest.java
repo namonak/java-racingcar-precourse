@@ -33,4 +33,13 @@ public class NameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이름은 5글자 이하만 가능합니다.");
     }
+
+    @DisplayName("이름에 알파벳 이외의 문자가 있는 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi1", "1pobi", "pobi!", "pobi@", "pobi#", "po#bi", "해나", "진이", "정"})
+    void 이름에_알파벳_이외의_문자가_있는_경우(String given) {
+        assertThatThrownBy(() -> new Name(given))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("이름은 알파벳만 가능합니다.");
+    }
 }
