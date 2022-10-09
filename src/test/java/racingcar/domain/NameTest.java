@@ -22,7 +22,7 @@ public class NameTest {
     void 이름이_빈_문자열이거나_공백인_경우(String given) {
         assertThatThrownBy(() -> new Name(given))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("이름이 빈 문자열이거나 공백이 있습니다.");
+                .hasMessageContaining("이름에 빈 문자열이거나 공백이 있습니다.");
     }
 
     @DisplayName("이름이 5자 초과인 경우")
