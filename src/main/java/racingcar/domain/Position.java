@@ -24,6 +24,10 @@ public class Position {
         this.position++;
     }
 
+    public boolean isBiggerPosition(Position position) {
+        return this.position >= position.position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
