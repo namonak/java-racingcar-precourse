@@ -23,6 +23,10 @@ public class Car {
         }
     }
 
+    public boolean compareWinner(Car car) {
+        return this.position.isBiggerPosition(car.position);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
