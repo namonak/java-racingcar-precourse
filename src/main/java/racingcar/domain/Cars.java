@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.util.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,18 @@ public class Cars {
         }
         if (cars.stream().distinct().count() != cars.size()) {
             throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
+        }
+    }
+
+    public void startRacing(int tryCount) {
+        for (int i = 0; i < tryCount; i++) {
+            play();
+        }
+    }
+
+    private void play() {
+        for (Car car : cars) {
+            car.play(Utils.generateRandomNumber());
         }
     }
 
