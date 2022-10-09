@@ -17,7 +17,7 @@ public class Car {
         this.position = new Position(position);
     }
 
-    public void play(int randomNumber) {
+    public void move(int randomNumber) {
         if (randomNumber >= MOVING_FORWARD) {
             this.position.move();
         }

@@ -30,7 +30,7 @@ public class Cars {
 
     private void play() {
         for (Car car : cars) {
-            car.play(Utils.generateRandomNumber());
+            car.move(Utils.generateRandomNumber());
         }
     }
 

@@ -12,8 +12,8 @@ public class CarTest {
     @Test
     void set() {
         Car car = new Car("pobi");
-        car.play(3);
-        car.play(4);
+        car.move(3);
+        car.move(4);
         assertThat(car).isEqualTo(new Car("pobi", 1));
     }
 
