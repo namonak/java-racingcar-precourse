@@ -3,7 +3,9 @@ package racingcar.domain;
 import racingcar.util.Utils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Cars {
     private final List<Car> cars;
@@ -17,7 +19,7 @@ public class Cars {
         if (cars.size() <= 1) {
             throw new IllegalArgumentException("자동차는 2대 이상 입력해주세요.");
         }
-        if (cars.stream().distinct().count() != cars.size()) {
+        if (isDuplicate(cars)) {
             throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
         }
     }
@@ -60,5 +62,10 @@ public class Cars {
             winner = racer;
         }
         return winner;
+    }
+
+    private static boolean isDuplicate(List<Car> cars) {
+        Set<Car> carSet = new HashSet<>(cars);
+        return cars.size() != carSet.size();
     }
 }
