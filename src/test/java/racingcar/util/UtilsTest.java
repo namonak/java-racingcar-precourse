@@ -33,4 +33,10 @@ public class UtilsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자만 입력 가능합니다.");
     }
+
+    @DisplayName("separateInput 테스트")
+    @Test
+    void separateInputTest() {
+        assertThat(Utils.separateInput("pobi,crong,honux")).contains("pobi", "crong", "honux");
+    }
 }

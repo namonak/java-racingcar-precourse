@@ -1,5 +1,8 @@
 package racingcar.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
 public class Utils {
@@ -33,5 +36,13 @@ public class Utils {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public static List<String> separateInput(String input) {
+        List<String> carNames = new ArrayList<>();
+        for (String carName : input.split(",")) {
+            carNames.add(carName.trim());
+        }
+        return carNames;
     }
 }
