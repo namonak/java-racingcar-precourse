@@ -3,10 +3,11 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Position {
+    public static final int DEFAULT_POSITION = 0;
     private int position;
 
     public Position() {
-        this.position = 0;
+        this.position = DEFAULT_POSITION;
     }
 
     public Position(int position) {
@@ -15,7 +16,7 @@ public class Position {
     }
 
     private static void validatePosition(int position) {
-        if (position < 0) {
+        if (position < DEFAULT_POSITION) {
             throw new IllegalArgumentException("0 이상의 위치값을 입력해주세요.");
         }
     }
