@@ -27,6 +27,14 @@ public class Car {
         return this.position.isBiggerPosition(car.position);
     }
 
+    public String getName() {
+        return this.name.getName();
+    }
+
+    public int getPosition() {
+        return this.position.getPosition();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
