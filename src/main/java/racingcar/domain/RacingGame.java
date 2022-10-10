@@ -10,7 +10,6 @@ public class RacingGame {
     public RacingGame(String input, int tryCount) {
         validateInput(input, tryCount);
         this.cars = new Cars(makeCarList(separateInput(input)));
-        this.cars.startRacing(tryCount);
     }
 
     private void validateInput(String input, int tryCount) {
@@ -36,5 +35,13 @@ public class RacingGame {
             carList.add(new Car(car));
         }
         return carList;
+    }
+
+    public List<Car> start() {
+        return this.cars.play();
+    }
+
+    public List<Car> getWinners() {
+        return this.cars.getWinners();
     }
 }
