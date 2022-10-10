@@ -29,6 +29,10 @@ public class Position {
         return this.position >= position.position;
     }
 
+    public int getPosition() {
+        return this.position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,9 +44,5 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(position);
-    }
-
-    public int getPosition() {
-        return this.position;
     }
 }
