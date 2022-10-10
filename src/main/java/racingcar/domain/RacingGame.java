@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
-    public static final int MIN_TRY_COUNT = 1;
     private final Cars cars;
 
-    public RacingGame(String input, int tryCount) {
-        validateInput(input, tryCount);
+    public RacingGame(String input) {
+        validateInputName(input);
         this.cars = new Cars(makeCarList(separateInput(input)));
     }
 
-    private void validateInput(String input, int tryCount) {
+    private void validateInputName(String input) {
         if (!input.contains(",")) {
             throw new IllegalArgumentException("자동차 이름은 쉼표(,)로 구분해 주세요.");
-        }
-        if (tryCount < MIN_TRY_COUNT) {
-            throw new IllegalArgumentException("시도 횟수는 1 이상이어야 합니다.");
         }
     }
 
