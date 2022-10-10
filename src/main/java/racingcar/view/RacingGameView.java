@@ -2,6 +2,7 @@ package racingcar.view;
 
 import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
+import racingcar.util.Utils;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class RacingGameView {
     public static final String INPUT_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     public static final String INPUT_TRY_COUNT = "시도할 회수는 몇회인가요?";
     public static final String WINNER = "최종 우승자 : ";
+    private static final String ERROR = "[ERROR] ";
 
     public static String inputCars() {
         System.out.println(INPUT_CAR_NAMES);
@@ -19,7 +21,7 @@ public class RacingGameView {
 
     public static int inputTryCount() {
         System.out.println(INPUT_TRY_COUNT);
-        return Integer.parseInt(readLine());
+        return Utils.validateTryCount(readLine());
     }
 
 
@@ -55,5 +57,9 @@ public class RacingGameView {
         }
         sb.delete(sb.length() - 2, sb.length());
         return sb.toString();
+    }
+
+    public static void printError(String message) {
+        System.out.println(ERROR + message);
     }
 }
