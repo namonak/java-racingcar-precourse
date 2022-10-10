@@ -22,16 +22,11 @@ public class Cars {
         }
     }
 
-    public void startRacing(int tryCount) {
-        for (int i = 0; i < tryCount; i++) {
-            play();
-        }
-    }
-
-    private void play() {
+    public List<Car> play() {
         for (Car car : cars) {
             car.move(Utils.generateRandomNumber());
         }
+        return cars;
     }
 
     public List<Car> getWinners() {
